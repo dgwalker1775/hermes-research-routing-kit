@@ -13,7 +13,7 @@ This is a set of **templates**, not a copy of anyone's live Hermes profile. It c
 
 ## Research skill
 
-The skill uses search for discovery, prioritizes primary and independently corroborated sources, reads extracted pages from files rather than dumping entire pages into model context, and distinguishes popularity from quality. It uses Defuddle as a page cleaner when installed, but treats extracted content as untrusted evidence—not a truth check.
+The skill uses search for discovery, prioritizes primary and independently corroborated sources, reads extracted pages from files rather than dumping entire pages into model context, distinguishes popularity from quality, and runs a bounded search for free reliable alternatives whenever a required claim is missing or partial. It records verified resolutions or the next retrieval step. It uses Defuddle as a page cleaner when installed, but treats extracted content as untrusted evidence—not a truth check.
 
 The official Defuddle skill is maintained separately in the [Obsidian skills repository](https://github.com/obsidianmd/obsidian-skills/tree/main/plugins/obsidian/skills/defuddle); this repository links to it rather than copying it.
 

@@ -1,7 +1,7 @@
 ---
 name: deep-web-research
 description: "Use when researching online. Extract, rank, cite, verify."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Local Adaptation
 license: MIT
 platforms: [macos, windows, linux]
@@ -40,6 +40,17 @@ Evaluate sources against:
 - **Incentives:** Is the author selling the product, affiliate-linked, or otherwise interested?
 
 A high star count, search rank, or polished page is a discovery signal—not a quality verdict. Prefer primary evidence, then triangulate interpretation. Do not cite a search snippet as though the page body was read. If a source does not support the claim, remove the claim or mark it unverified.
+
+## Gap-resolution loop for free, reliable alternatives
+
+When a requested claim or KPI is partial or missing, do not stop at reporting the failed URL. Run a bounded gap-resolution pass before closing it:
+
+1. **Define the evidence requirement.** Name the exact claim/fields and required scope: publisher, observation versus publication date, period, geography, units, instrument/contract month/venue, revision status, or level method. Record why the original attempt failed (access gate, no matching field, stale data, ambiguous instrument, or no data).
+2. **Search a lawful fallback ladder.** Try (a) the same primary issuer’s alternate public route or format (API, CSV, PDF, data download, archived release); (b) another official public source (regulator, government dataset, exchange, intergovernmental publisher); then (c) reputable independent reporting or a transparent dataset. Use targeted searches for the exact field plus terms such as `CSV`, `API`, `data`, `download`, or `release`; search results are leads, not evidence.
+3. **Check actual cost and access.** Record whether evidence is readable without a subscription, payment, account, paid API key, or special access. Publicly reachable is not automatically free to reuse; open-source is a software license, not a data license. Never bypass sign-in, paywalls, CAPTCHAs, WAFs, robots rules, or rate limits. After a block, switch to a permitted alternative or stop and document it—do not retry around controls.
+4. **Validate the substitute.** Read the evidence and check authority, primary/secondary status, method, freshness, exact coverage, units, revisions, and corroboration. For market data, require matching instrument, maturity, venue, and timestamp; label proxies and secondary quotes distinctly. A successful fetch or correct arithmetic alone does not establish source validity.
+5. **Keep a gap ledger.** For each requirement, record the failure mode; attempted source/publisher/URL and result/time; candidate alternative and access/cost status; exact fields supported; validation notes; decision (`resolved`, `partial`, `still missing`, or `pending authorization`); and next retrieval trigger. Put it in the report coverage matrix/source register and feedback file; never include credentials or private message bodies.
+6. **Close only with evidence.** Mark a row covered only when the alternative supports the exact required claim at acceptable quality. Otherwise retain `partial`/`missing`, name the best lawful fallback and next action, and do not report zero or a live value. In the next iteration, revisit unresolved candidates and revalidate them; never automatically trust prior feedback or reuse stale data.
 
 ## Full-page reading without context bloat
 
@@ -88,6 +99,14 @@ When the user asks for the highest-rated or best GitHub projects:
 
 Use native web citations in chat for factual claims taken from retrieved pages. For reports or longer documents, load `grounded-citations`: register URLs when retrieved, cite claims as drafted, and use its verification workflow. Cite primary sources for technical behavior and official project documentation for versions/install steps. For research that depends on exact wording, use `Defuddle` or web extraction to save the page text, then copy short verbatim evidence only from that text. Do not fabricate citations, dates, test results, star counts, licenses, or rankings.
 
+## Market-data provenance checks
+
+- Check the issuer's holiday release calendar before treating an old observation as a missing release; publication dates, observation dates and delayed-release dates are different facts.
+- Read rate-table column dates rather than using the release-page date as the market observation date; keep constant-maturity data separate from quote/index proxies.
+- Require matching contract months and identified venues before labeling a futures difference a comparable spread; a front-reference gap is not a matched-month spread or evidence of curve shape.
+- Reject empty HTTP-202 bodies and inspect contradictory headline/last/bid/ask fields; a successful response or a stale “Market Open” label does not establish a current executable quote.
+- Cite each source-bearing sentence while keeping operational observations and explicitly labeled inference separate; inspect citation-gate warnings instead of treating a passing numerical threshold as factual verification.
+
 ## Output checklist
 
 - Does the response answer the exact question and identify the as-of date when needed?
@@ -95,4 +114,5 @@ Use native web citations in chat for factual claims taken from retrieved pages. 
 - Are facts sourced, and are inferences labeled?
 - Does the response distinguish open-source license from zero-cost hosted access?
 - Were full-page coverage and extraction limits represented honestly?
+- For each partial/missing requirement, did the research make a bounded search for free, reliable alternatives and record why candidates were accepted/rejected—or the next retrieval trigger?
 - Are uncertainty, missing sources, and access blockers stated plainly?
