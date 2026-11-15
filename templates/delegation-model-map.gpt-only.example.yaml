@@ -1,0 +1,22 @@
+# EXAMPLE ONLY. Replace each placeholder with a GPT model ID returned by
+# the active profile's Hermes Codex model catalog before applying this config.
+# Do not add api_key, token, or service_tier fields to this template.
+# No `default` is set: tasks without an option use the profile's current model.
+
+delegation:
+  backend: model_map
+  backends:
+    model_map:
+      options:
+        - name: fast
+          description: "Use the configured fast GPT model for simple lookups, short summaries, and routine tasks."
+          provider: openai-codex
+          model: "GPT_FAST_MODEL_ID"
+        - name: workhorse
+          description: "Use the configured workhorse GPT model for coding, research, and everyday multi-step tasks."
+          provider: openai-codex
+          model: "GPT_WORKHORSE_MODEL_ID"
+        - name: frontier
+          description: "Use the configured frontier GPT model for the most demanding tasks; choose selectively."
+          provider: openai-codex
+          model: "GPT_FRONTIER_MODEL_ID"
