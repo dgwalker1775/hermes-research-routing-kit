@@ -19,13 +19,13 @@ The official Defuddle skill is maintained separately in the [Obsidian skills rep
 
 ## GPT-only model-map template
 
-Hermes Advanced Delegation can expose a named model route for each delegated task. The example deliberately leaves model IDs as placeholders and does not set a default route; an unrouted task therefore remains on the profile's primary model. Use `provider: openai-codex` only when that provider is configured for the profile. The template contains no API key fields.
+Hermes Advanced Delegation can expose a named model route for each delegated task. The example deliberately leaves model IDs as placeholders and does not set a default route; an unrouted task therefore remains on the profile's primary model. Use `provider: openai-codex` only when that provider is configured for the profile. The template contains no API key fields. Advanced Delegation is an official plugin, must be installed in the profile that delegates, and currently requires Hermes Agent 0.22.5 or newer; check its current documentation before installation.
 
 Model routes select models for **delegated subtasks**; they do not automatically switch the primary model for every incoming user turn. The Advanced Delegation backend and route changes are profile-scoped and apply to new sessions. See the official [Advanced Delegation plugin](https://github.com/NousResearch/hermes-official-plugins/tree/main/advanced-delegation).
 
 ## A2A
 
-Hermes includes native A2A support; an extra A2A SDK is not required. For agents on the same machine, prefer Hermes delegation or Kanban when those meet the need. The example binds only to loopback. Do not expose an A2A endpoint on a network interface without an explicit peer allowlist and per-peer authentication, configured in the operator's secret store. Never commit bearer tokens.
+Hermes includes native A2A support; an extra A2A SDK is not required. For agents on the same machine, prefer Hermes delegation or Kanban when those meet the need. With no bearer token, the example binds only to loopback (`127.0.0.1`). Remote exposure requires per-peer authentication, a trusted-peer allowlist, and an explicit `A2A_HOST`; configure tokens in the operator's secret store. Never commit bearer tokens. See the current [Hermes A2A documentation](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/a2a) before adapting it.
 
 A2A is an open interoperability protocol; see the [A2A project](https://github.com/a2aproject/A2A). This repository contains no A2A implementation code.
 

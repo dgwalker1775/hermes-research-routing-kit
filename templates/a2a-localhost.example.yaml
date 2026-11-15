@@ -1,14 +1,15 @@
 # EXAMPLE ONLY. Hermes has native A2A support; this does not install or start it.
-# Loopback is the safe default for same-machine peers. Do not widen the bind host
-# without explicit peer identities, per-peer authentication, and approval.
+# With no bearer token, Hermes binds the A2A server to loopback (127.0.0.1).
+# Remote exposure requires per-peer authentication, a trusted-peer allowlist,
+# and an explicit A2A_HOST. Do not widen the bind host without approval.
 
-platforms:
-  a2a:
-    enabled: true
-    extra:
-      port: 9900
-      agents: {}
+gateway:
+  platforms:
+    a2a:
+      enabled: true
+      extra:
+        port: 9900
 
-# For remote interoperability, configure A2A_PEER_TOKENS and a trusted-peer
-# allowlist in the appropriate secret/config store. Never commit token values.
+# Configure A2A_PEER_TOKENS and A2A_TRUSTED_PEERS in the appropriate
+# secret/config store before remote exposure. Never commit token values.
 # Do not expose terminal/file-capable profiles to unknown peers.
